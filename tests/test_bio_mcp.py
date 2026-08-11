@@ -55,10 +55,18 @@ EXPECTED_TOOLS = {
     "genome_assembly_search",
     "dbsnp_search",
     "plasmid_search",
+    # v0.4 新增 7（核酸档案/微生物组/通路/文献/脂质/电镜结构/实验互作）
+    "ena_sequence_search",
+    "microbiome_study_search",
+    "reactome_pathway_search",
+    "openalex_work_search",
+    "lipid_lookup",
+    "emdb_structure_lookup",
+    "intact_interactions",
 }
 
 
-def test_create_server_registers_all_thirty_three():
+def test_create_server_registers_all_forty():
     from bio_mcp.server import create_server
 
     server = create_server()
@@ -68,7 +76,7 @@ def test_create_server_registers_all_thirty_three():
 
     tools = run(_t())
     assert tools == EXPECTED_TOOLS
-    assert len(tools) == 33
+    assert len(tools) == 40
 
 
 def test_tool_descriptions_nonempty():
