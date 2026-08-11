@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bio-mcp"
-version = "0.2.0"
-description = "BioMCP — 生物信息学 MCP 服务器：覆盖 13 个公开学术数据库，让任意 AI 助手检索 PubMed、BLAST、PDB、UniProt、Ensembl、STRING、InterPro、PubChem、KEGG、变异注释与跨库交叉验证。"
+version = "0.3.0"
+description = "BioMCP — 生物信息学 MCP 服务器：覆盖 19 个公开学术数据库 33 个工具，让任意 AI 助手检索 PubMed、BLAST、PDB、UniProt、Ensembl、STRING、InterPro、PubChem、KEGG、变异、糖组学、代谢组学、基因组组装与跨库交叉验证。"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-keywords = ["mcp", "bioinformatics", "pubmed", "ncbi", "blast", "pdb", "uniprot", "ensembl", "string-db", "kegg", "gwas", "interpro", "pubchem"]
+keywords = ["mcp", "bioinformatics", "pubmed", "ncbi", "blast", "pdb", "uniprot", "ensembl", "string-db", "kegg", "gwas", "interpro", "pubchem", "glycomics", "metabolomics"]
 authors = [{ name = "qgeng1465" }]
 classifiers = [
     "Development Status :: 4 - Beta",
