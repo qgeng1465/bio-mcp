@@ -20,6 +20,13 @@
 - EBI UniParc 蛋白序列归档（uniparc）
 - EBI Metabolights 代谢组学（metabolights）
 - Human Protein Atlas 蛋白组织表达（proteinatlas）
+- EBI ENA 欧洲核苷酸档案（ena）
+- EBI MGnify 微生物组（mgnify）
+- Reactome 生物通路（reactome）
+- OpenAlex 学术文献（openalex）
+- LIPID MAPS 脂质组学（lipidmaps）
+- EBI EMDB 冷冻电镜结构（emdb）
+- EBI IntAct 实验分子互作（intact）
 """
 
 from bio_mcp.core.http import BioHTTP
@@ -42,6 +49,13 @@ from bio_mcp.core.glygen import GlyGenClient
 from bio_mcp.core.uniparc import UniParcClient
 from bio_mcp.core.metabolights import MetabolightsClient
 from bio_mcp.core.proteinatlas import ProteinAtlasClient
+from bio_mcp.core.ena import ENAClient
+from bio_mcp.core.mgnify import MGnifyClient
+from bio_mcp.core.reactome import ReactomeClient
+from bio_mcp.core.openalex import OpenAlexClient
+from bio_mcp.core.lipidmaps import LipidMapsClient
+from bio_mcp.core.emdb import EMDBClient
+from bio_mcp.core.intact import IntActClient
 
 __all__ = [
     "BioHTTP",
@@ -64,4 +78,11 @@ __all__ = [
     "UniParcClient",
     "MetabolightsClient",
     "ProteinAtlasClient",
+    "ENAClient",
+    "MGnifyClient",
+    "ReactomeClient",
+    "OpenAlexClient",
+    "LipidMapsClient",
+    "EMDBClient",
+    "IntActClient",
 ]
