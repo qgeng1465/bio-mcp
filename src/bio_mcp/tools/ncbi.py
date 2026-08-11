@@ -10,8 +10,11 @@ def register(server: Any) -> None:
     @server.tool(
         name="ncbi_fetch_sequence",
         description=(
-            "从 NCBI 下载核酸/蛋白序列（FASTA），支持 accession 号、gene symbol、关键词。"
-            "数据库可选 nucleotide/gene/protein。用于获取参考序列做下游分析。"
+            "Download nucleotide/protein sequences (FASTA) from NCBI. "
+            "从 NCBI 下载核酸/蛋白序列（FASTA），支持 accession、gene symbol、关键词。"
+            "DB options: nucleotide/gene/protein. 数据库可选 nucleotide/gene/protein，"
+            "for getting reference sequences for downstream analysis. "
+            "用于获取参考序列做下游分析。"
         ),
     )
     def ncbi_fetch_sequence(
