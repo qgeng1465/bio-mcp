@@ -10,8 +10,10 @@ def register(server: Any) -> None:
     @server.tool(
         name="pdb_structure_summary",
         description=(
-            "按 PDB ID 获取蛋白质结构摘要：标题/分辨率/实验方法/物种/沉积日期，"
-            "以及指定链的序列。用于结构生物学、药物设计的结构查询。"
+            "Get protein structure summary from PDB. 按 PDB ID 获取蛋白质结构摘要："
+            "title/resolution/method/organism/deposition date and chain sequence. "
+            "标题/分辨率/实验方法/物种/沉积日期及指定链序列，"
+            "for structural biology and drug design. 用于结构生物学、药物设计的结构查询。"
         ),
     )
     def pdb_structure_summary(
