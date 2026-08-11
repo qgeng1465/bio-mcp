@@ -10,8 +10,10 @@ def register(server: Any) -> None:
     @server.tool(
         name="uniprot_annotate",
         description=(
-            "查询 UniProt 蛋白注释：蛋白名/基因/物种/长度/功能/Gene Ontology 项。"
-            "支持 accession（如 P04637）或基因名检索。用于蛋白功能解读。"
+            "Query UniProt protein annotations. 查询 UniProt 蛋白注释："
+            "protein name/gene/organism/length/function/Gene Ontology. "
+            "蛋白名/基因/物种/长度/功能/GO 项，支持 accession（如 P04637）或基因名检索，"
+            "for protein function interpretation. 用于蛋白功能解读。"
         ),
     )
     def uniprot_annotate(
