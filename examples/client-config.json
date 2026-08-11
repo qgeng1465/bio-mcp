@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "bio-mcp": {
+      "command": "bio-mcp"
+    }
+  }
+}
