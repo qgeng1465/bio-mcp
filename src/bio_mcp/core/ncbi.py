@@ -110,6 +110,92 @@ class NCBIClient:
             )
         return {"count": es["count"], "nodes": nodes}
 
+    # ---- Assembly：基因组组装检索（细菌/病毒/真核）----
+    def assembly_search(self, term: str, retmax: int = 5) -> dict[str, Any]:
+        """检索 NCBI Assembly 基因组组装（细菌/病毒/真核）。
+
+        term 示例：
+          "Escherichia coli[Organism]"
+          "SARS-CoV-2[Organism]"
+          "GRCh38[Assembly Name]"
+        """
+        es = self.esearch("assembly", term, retmax=retmax)
+        ids = es["ids"]
+        if not ids:
+            return {"count": 0, "assemblies": []}
+        assemblies: list[dict[str, Any]] = []
+        for rec in self.esummary("assembly", ids):
+            assemblies.append(
+                {
+                    "accession": rec.get("assemblyaccession"),
+                    "name": rec.get("assemblyname", ""),
+                    "organism": rec.get("organism", ""),
+                    "species": rec.get("speciesname", ""),
+                    "taxid": rec.get("taxid"),
+                    "type": rec.get("assemblytype", ""),
+                    "status": rec.get("assemblystatus", ""),
+                    "biosample": rec.get("biosampleaccn", ""),
+                    "bioproject": next(
+                        (p for p in (rec.get("gb_bioprojects") or []) if p), ""),
+                }
+            )
+        return {"count": es["count"], "assemblies": assemblies}
+
+    # ---- dbSNP：人类/模式生物变异检索 ----
+    def dbsnp_search(self, term: str, retmax: int = 5) -> dict[str, Any]:
+        """检索 NCBI dbSNP 变异。
+
+        term 示例：
+          "BRCA1[Gene Name] AND Homo sapiens[Organism]"
+          "rs1800057[RS]"
+        """
+        es = self.esearch("snp", term, retmax=retmax)
+        ids = es["ids"]
+        if not ids:
+            return {"count": 0, "variants": []}
+        variants: list[dict[str, Any]] = []
+        for rec in self.esummary("snp", ids):
+            variants.append(
+                {
+                    "rsid": rec.get("snp_id"),
+                    "chrom": rec.get("chr", ""),
+                    "position": rec.get("chrpos", ""),
+                    "alleles": rec.get("allele", ""),
+                    "clinical_significance": (rec.get("clinical_significance") or "").strip()[:120],
+                    "function": rec.get("fxn_class", ""),
+                    "gene": ", ".join(
+                        (g.get("name") or "") for g in (rec.get("genes") or []) if g.get("name")
+                    ),
+                    "summary": (rec.get("docsum") or "").strip()[:200],
+                }
+            )
+        return {"count": es["count"], "variants": variants}
+
+    # ---- nuccore：核酸/质粒序列检索 ----
+    def plasmid_search(self, term: str, retmax: int = 5) -> dict[str, Any]:
+        """检索 NCBI nuccore 中的质粒序列。
+
+        term 示例：
+          "pET-28a[Title]"
+          "plasmid[Title] AND Escherichia coli[Organism]"
+        """
+        es = self.esearch("nuccore", term, retmax=retmax)
+        ids = es["ids"]
+        if not ids:
+            return {"count": 0, "plasmids": []}
+        plasmids: list[dict[str, Any]] = []
+        for rec in self.esummary("nuccore", ids):
+            plasmids.append(
+                {
+                    "accession": rec.get("caption"),
+                    "title": (rec.get("title") or "").strip(),
+                    "organism": rec.get("organism", ""),
+                    "length": rec.get("slen"),
+                    "genbank": rec.get("gi") or rec.get("uid"),
+                }
+            )
+        return {"count": es["count"], "plasmids": plasmids}
+
     # ---- GEO：基因表达数据集检索 ----
     def geo_search(self, term: str, retmax: int = 10) -> dict[str, Any]:
         """检索 GEO 基因表达数据集（gds db），返回系列标题/类型/平台/样本数。"""
