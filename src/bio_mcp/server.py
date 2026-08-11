@@ -25,14 +25,15 @@ except Exception:  # 非终端环境
 
 DESCRIPTION = (
     "BioMCP — Bioinformatics MCP Server / 生物信息学 MCP 服务器。"
-    "Zero-config direct access to 19 open academic databases / "
-    "零配置直连 19 个公开学术数据库：PubMed/EuropePMC literature、"
-    "NCBI sequences/BLAST/Taxonomy/GEO/Assembly/dbSNP、PDB structures、"
-    "AlphaFold predictions、UniProt annotations、GO/KEGG enrichment、"
-    "Ensembl genome & homologs、STRING interactions、KEGG pathways、"
-    "MyVariant/ClinVar variants、InterPro domains、PubChem/ChEMBL compounds、"
-    "CELLxGENE single-cell、UCSC genomes、GlyGen glycobiology、"
-    "UniParc archive、Metabolights metabolomics、Human Protein Atlas. "
+    "Zero-config direct access to 26 open academic databases / "
+    "零配置直连 26 个公开学术数据库：PubMed/EuropePMC/OpenAlex literature、"
+    "NCBI sequences/BLAST/Taxonomy/GEO/Assembly/dbSNP、ENA nucleotides、"
+    "PDB structures、AlphaFold/EMDB cryo-EM predictions、UniProt annotations、"
+    "GO/KEGG enrichment、Ensembl genome & homologs、STRING/IntAct interactions、"
+    "KEGG/Reactome pathways、MyVariant/ClinVar variants、InterPro domains、"
+    "PubChem/ChEMBL compounds、CELLxGENE single-cell、UCSC genomes、"
+    "GlyGen glycobiology、LIPID MAPS lipidomics、UniParc archive、"
+    "MGnify microbiome、Metabolights metabolomics、Human Protein Atlas. "
     "Cross-database validation via gene_full_profile / "
     "支持跨库交叉验证 gene_full_profile。"
 )
@@ -41,17 +42,20 @@ INSTRUCTIONS = (
     "BioMCP lets AI assistants query bioinformatics databases directly, "
     "all zero-config. 让 AI 助手直接访问生物数据库，全部零配置。\n"
     "Common usage / 常见用法：\n"
-    "- Literature 文献：pubmed_search('BRCA1 breast cancer') / europepmc_search('BRCA1')\n"
-    "- Sequences 序列：ncbi_fetch_sequence('NM_007294.4')\n"
+    "- Literature 文献：pubmed_search('BRCA1 breast cancer') / europepmc_search('BRCA1') / openalex_work_search('CRISPR')\n"
+    "- Sequences 序列：ncbi_fetch_sequence('NM_007294.4') / ena_sequence_search('tax_tree(562)')\n"
     "- Homology 比对：blast_search(sequence)\n"
-    "- Structure 结构：pdb_structure_summary('1crn') / alphafold_structure('P04637')\n"
+    "- Structure 结构：pdb_structure_summary('1crn') / alphafold_structure('P04637') / emdb_structure_lookup('EMD-1234')\n"
     "- Enrichment 富集：gene_enrichment('BRCA1,TP53,EGFR')\n"
     "- Protein 蛋白：uniprot_annotate('P04637')\n"
     "- Genome 基因组：ensembl_gene_lookup('BRCA1') / genome_assembly_search('Escherichia coli[Organism]')\n"
-    "- Interactions 互作：string_interactions('TP53')\n"
+    "- Pathways 通路：reactome_pathway_search('apoptosis')\n"
+    "- Interactions 互作：string_interactions('TP53') / intact_interactions('TP53')\n"
+    "- Microbiome 微生物组：microbiome_study_search('gut microbiome')\n"
     "- Variants 变异：variant_annotate('chr13:g.32911145G>A') / dbsnp_search('BRCA1[Gene Name] AND Homo sapiens[Organism]')\n"
     "- Drugs 药物：chembl_drug_search('imatinib')\n"
     "- Glycomics 糖组学：glycan_lookup('G00051MO') / protein_glycosylation('P04637')\n"
+    "- Lipidomics 脂质组学：lipid_lookup('LMFA01030001')\n"
     "- Metabolomics 代谢组学：metabolomics_study('MTBLS1')\n"
     "- Protein Atlas 蛋白图谱：protein_tissue_expression('ENSG00000141510')\n"
     "- Plasmids 质粒：plasmid_search('pET-28a[Title]')\n"
@@ -71,19 +75,26 @@ def create_server() -> MCPServer:
         cellxgene,
         chembl,
         crosscheck,
+        emdb,
+        ena,
         enrichment,
         ensembl,
         europepmc,
         glygen,
+        intact,
         interpro,
         kegg,
+        lipidmaps,
         metabolights,
+        mgnify,
         ncbi,
         ncbi_extra,
+        openalex,
         pdb,
         proteinatlas,
         pubchem,
         pubmed,
+        reactome,
         stringdb,
         ucsc,
         uniparc,
@@ -120,6 +131,13 @@ def create_server() -> MCPServer:
     uniparc.register(server)
     metabolights.register(server)
     proteinatlas.register(server)
+    ena.register(server)
+    mgnify.register(server)
+    reactome.register(server)
+    openalex.register(server)
+    lipidmaps.register(server)
+    emdb.register(server)
+    intact.register(server)
     crosscheck.register(server)
     return server
 
