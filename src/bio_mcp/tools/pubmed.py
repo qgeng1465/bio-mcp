@@ -10,9 +10,11 @@ def register(server: Any) -> None:
     @server.tool(
         name="pubmed_search",
         description=(
-            "检索 PubMed 生物医学文献，返回标题/作者/期刊/年份/PMID/DOI。"
-            "用于文献综述、开题、课题调研、循证检索。"
-            "参数 term 用 PubMed 查询语法（如 'BRCA1 AND breast cancer[Title]'）。"
+            "Search PubMed biomedical literature. 检索 PubMed 生物医学文献，"
+            "returns title/authors/journal/year/PMID/DOI for literature review, "
+            "grant proposals and evidence-based search. "
+            "返回标题/作者/期刊/年份/PMID/DOI，用于文献综述、开题、课题调研、循证检索。"
+            "Use PubMed query syntax for term (e.g. 'BRCA1 AND breast cancer[Title]')."
         ),
     )
     def pubmed_search(
