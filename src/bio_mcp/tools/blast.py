@@ -10,7 +10,9 @@ def register(server: Any) -> None:
     @server.tool(
         name="blast_search",
         description=(
+            "NCBI BLAST homology search for DNA or protein sequences. "
             "对 DNA 或蛋白序列做 NCBI BLAST 同源搜索，返回 top hits（accession/物种/E值/一致性/描述）。"
+            "For sequence identification, homolog discovery, primer validation. "
             "用于鉴定未知序列、找同源基因、验证引物。"
         ),
     )
