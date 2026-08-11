@@ -10,3 +10,5 @@ venv/
 .tox/
 *.log
 _coverage/
+_e2e_*.py
+_e2e_*.txt
