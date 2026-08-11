@@ -1,9 +1,11 @@
-"""BioMCP — 生物信息学 MCP 服务器。
+"""BioMCP — Bioinformatics MCP Server / 生物信息学 MCP 服务器.
 
-让任意 MCP 客户端（AI 编程助手等）直接检索生物数据库：
-PubMed 文献、NCBI 序列、BLAST 比对、PDB 结构、GO/KEGG 富集、UniProt 注释。
+Zero-config access to open bio databases for any MCP client.
+让任意 MCP 客户端零配置直连公开生物数据库：
+literature / sequences / BLAST / structures / enrichment / annotations /
+genomes / interactions / variants / domains / compounds / single-cell / etc.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = ["__version__"]
