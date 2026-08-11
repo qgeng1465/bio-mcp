@@ -90,6 +90,48 @@ class NCBIClient:
         )
         return resp.text
 
+    # ---- Taxonomy：物种分类检索 ----
+    def taxonomy_lookup(self, query: str) -> dict[str, Any]:
+        """按名称/ID 检索 NCBI Taxonomy，返回学名、常用名、层级。"""
+        es = self.esearch("taxonomy", query, retmax=5)
+        ids = es["ids"]
+        if not ids:
+            return {"count": 0, "nodes": []}
+        nodes: list[dict[str, Any]] = []
+        for rec in self.esummary("taxonomy", ids):
+            nodes.append(
+                {
+                    "taxid": rec.get("uid"),
+                    "scientific_name": rec.get("title", ""),
+                    "common_name": rec.get("commonname", ""),
+                    "rank": rec.get("rank", ""),
+                    "lineage": rec.get("lineage", ""),
+                }
+            )
+        return {"count": es["count"], "nodes": nodes}
+
+    # ---- GEO：基因表达数据集检索 ----
+    def geo_search(self, term: str, retmax: int = 10) -> dict[str, Any]:
+        """检索 GEO 基因表达数据集（gds db），返回系列标题/类型/平台/样本数。"""
+        es = self.esearch("gds", term, retmax=retmax)
+        ids = es["ids"]
+        if not ids:
+            return {"count": 0, "datasets": []}
+        datasets: list[dict[str, Any]] = []
+        for rec in self.esummary("gds", ids):
+            datasets.append(
+                {
+                    "accession": rec.get("accession"),
+                    "title": rec.get("title", "").strip(),
+                    "gdstype": rec.get("gdstype", ""),
+                    "gpl": rec.get("gpl", ""),
+                    "n_samples": rec.get("n_samples"),
+                    "taxon": rec.get("taxon", ""),
+                    "summary": rec.get("summary", "").strip()[:300],
+                }
+            )
+        return {"count": es["count"], "datasets": datasets}
+
     # ---- PubMed 检索（esearch + esummary 两步）----
     def pubmed_search(
         self, term: str, retmax: int = 10, sort: Optional[str] = None
