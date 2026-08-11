@@ -10,9 +10,10 @@ def register(server: Any) -> None:
     @server.tool(
         name="gene_enrichment",
         description=(
-            "对基因列表做 GO/KEGG/Reactome 通路富集分析（Enrichr 引擎），"
-            "返回显著富集项（通路名/p值/校正p值/重叠基因）。"
-            "用于转录组/蛋白组/单细胞的差异基因功能解读。"
+            "Gene ontology / pathway enrichment analysis (Enrichr engine). "
+            "对基因列表做 GO/KEGG/Reactome 通路富集分析，返回显著富集项（通路名/p值/校正p值/重叠基因）。"
+            "For functional interpretation of omics / single-cell DEGs. "
+            "用于转录组/蛋白组/单细胞差异基因功能解读。"
         ),
     )
     def gene_enrichment(
