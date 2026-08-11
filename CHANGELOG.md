@@ -2,6 +2,27 @@
 
 All notable changes to **BioMCP** are documented here. 记录 BioMCP 的版本变更。
 
+## [0.4.0] - 2026-08-11
+
+### Added 新增
+- **7 个新数据库 / 7 new databases**（全部零配置直连 / all zero-config direct access）:
+  - **EBI ENA** 欧洲核苷酸档案 / nucleotide archive: `ena_sequence_search` 核酸序列（微生物/病毒/质粒，tax_tree 语法）
+  - **EBI MGnify** 微生物组 / microbiome: `microbiome_study_search` 宏基因组研究（细菌/古菌/病毒）
+  - **Reactome** 生物通路 / pathways: `reactome_pathway_search`（信号转导/代谢/DNA 修复）
+  - **OpenAlex** 学术文献 / scholarly works: `openalex_work_search`（被引/作者/期刊）
+  - **LIPID MAPS** 脂质组学 / lipidomics: `lipid_lookup`（名称/分子式/SMILES/DB 交叉引用）
+  - **EBI EMDB** 冷冻电镜结构 / cryo-EM: `emdb_structure_lookup`（标题/作者/分辨率/组分）
+  - **EBI IntAct** 实验分子互作 / experimental interactions: `intact_interactions`（检测方法/MI-score/文献）
+- **数据库 19 → 26，工具 33 → 40** / databases 19→26, tools 33→40
+- 全部 7 个新工具均以真实数据端到端验证（40/40 通过）/ all 7 new tools E2E validated with real data
+
+### Changed 变更
+- README 工具表新增 文献（OpenAlex）/ 核酸与质粒（ENA）/ 微生物组 / 脂质组学 分类，通路与互作分类补充 Reactome、IntAct
+- 架构图与目录结构更新至 26 客户端 / 40 工具
+
+### Note 说明
+- 本轮所有新数据库均位于 EBI / Reactome / OpenAlex / LIPID MAPS 等免密钥服务；NCBI 在开发期网络不可达，其既有工具保持 v0.3 已验证状态，NCBI 新扩展（Gene/Protein/SRA）顺延至下一版本
+
 ## [0.3.0] - 2026-08-11
 
 ### Added 新增
