@@ -16,6 +16,10 @@
 - ChEMBL 药物活性（chembl）
 - CELLxGENE 单细胞（cellxgene）
 - UCSC 基因组浏览器（ucsc）
+- GlyGen 糖组学 / 糖苷与蛋白糖基化（glygen）
+- EBI UniParc 蛋白序列归档（uniparc）
+- EBI Metabolights 代谢组学（metabolights）
+- Human Protein Atlas 蛋白组织表达（proteinatlas）
 """
 
 from bio_mcp.core.http import BioHTTP
@@ -34,6 +38,10 @@ from bio_mcp.core.alphafold import AlphaFoldClient
 from bio_mcp.core.chembl import ChEMBLClient
 from bio_mcp.core.cellxgene import CellxGeneClient
 from bio_mcp.core.ucsc import UCSCClient
+from bio_mcp.core.glygen import GlyGenClient
+from bio_mcp.core.uniparc import UniParcClient
+from bio_mcp.core.metabolights import MetabolightsClient
+from bio_mcp.core.proteinatlas import ProteinAtlasClient
 
 __all__ = [
     "BioHTTP",
@@ -52,4 +60,8 @@ __all__ = [
     "ChEMBLClient",
     "CellxGeneClient",
     "UCSCClient",
+    "GlyGenClient",
+    "UniParcClient",
+    "MetabolightsClient",
+    "ProteinAtlasClient",
 ]
