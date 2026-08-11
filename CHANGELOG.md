@@ -2,6 +2,27 @@
 
 All notable changes to **BioMCP** are documented here. 记录 BioMCP 的版本变更。
 
+## [0.3.0] - 2026-08-11
+
+### Added 新增
+- **4 个新数据库 / 4 new databases**（全部零配置直连 / all zero-config direct access）:
+  - **GlyGen** 糖组学 / glycomics: `glycan_lookup` 糖苷结构（组成/质量/IUPAC）、`protein_glycosylation` 蛋白糖基化位点
+  - **EBI UniParc** 蛋白序列归档 / protein archive: `uniparc_search`、`uniparc_by_id`（UPI/交叉引用/序列）
+  - **EBI Metabolights** 代谢组学 / metabolomics: `metabolomics_study` 研究详情（技术/设计/因子）、`metabolomics_latest` 最新研究
+  - **Human Protein Atlas** 蛋白组织图谱 / tissue atlas: `protein_tissue_expression`（组织表达/亚细胞定位）
+- **NCBI 新检索能力 / new NCBI search capabilities**:
+  - `genome_assembly_search` 基因组组装（微生物/细菌/病毒/真核）/ genome assemblies
+  - `dbsnp_search` 遗传变异（rsID/等位基因/临床意义）/ dbSNP variants
+  - `plasmid_search` 质粒/载体序列 / plasmid sequences
+- **数据库 15 → 19，工具 23 → 33** / databases 15→19, tools 23→33
+
+### Changed 变更
+- README 工具表新增 糖组学 / 代谢组学 / 核酸与质粒 / 蛋白图谱 分类
+- NCBI 客户端扩展 Assembly / dbSNP / nuccore 三个 esearch 系列方法
+
+### Removed 移除
+- DisGeNET（需要 API key，无法零配置直连）/ requires API key
+
 ## [0.2.0] - 2026-08-11
 
 ### Added 新增
